@@ -132,11 +132,25 @@ article {
 }
 
 .contact-header-img {
-  --bg-img: url("https://picsum.photos/300/100/");
-  background-image: var(--bg-img);
-  background-color: rgb(216, 216, 246);
+  --bg-img: ;
   width: 100%;
   height: 5rem;
+  background-color: rgb(216, 216, 246);
+  position: relative; /* Ensure stacking */
+  overflow: hidden; /* Prevent blur overflow */
+}
+
+.contact-header-img::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: var(--bg-img);
+  background-size: cover;
+  background-position: center;
+  filter: blur(25px);
 }
 
 .contact-portrait-img {
@@ -144,6 +158,7 @@ article {
   border-radius: 100rem;
   border: 1px solid rgb(190, 190, 190);
   margin-top: -4rem; /* Moves it up to overlap the header */
+  z-index: 2;
 }
 
 .contact-tile-body {
